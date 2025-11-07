@@ -1,34 +1,40 @@
-from sqlalchemy.orm import Session
-from . import models, schemas
+# api/crud.py
+from .database import collection
+from .models import Vulnerability
+from typing import List
+import json
 
-def get_vulnerability(db: Session, vuln_id: int):
-    return db.query(models.Vulnerability).filter(models.Vulnerability.vuln_id == vuln_id).first()
+async def get_vulnerabilities(skip: int = 0, limit: int = 100) -> List[Vulnerability]:
+    cursor = collection.find().skip(skip).limit(limit)
+    return [Vulnerability(**doc) async for doc in cursor]
 
-def get_vulnerabilities(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Vulnerability).offset(skip).limit(limit).all()
+async def get_vulnerability_by_id(vuln_id: int) -> Vulnerability:
+    doc = await collection.find_one({"id": vuln_id})
+    return Vulnerability(**doc) if doc else None
 
-def create_vulnerability(db: Session, vuln: schemas.VulnerabilityCreate):
-    db_vuln = models.Vulnerability(**vuln.dict(exclude={"source_filenames", "related_cves"}))
-    db.add(db_vuln)
-    db.commit()
-    db.refresh(db_vuln)
+async def create_vulnerability(vuln: Vulnerability) -> Vulnerability:
+    result = await collection.insert_one(vuln.dict(by_alias=True))
+    return await get_vulnerability_by_id(vuln.id)
 
-    # Fuentes
-    for filename in vuln.source_filenames:
-        source = db.query(models.Source).filter(models.Source.filename == filename).first()
-        if not source:
-            source = models.Source(filename=filename)
-            db.add(source)
-            db.commit()
-            db.refresh(source)
-        db_vuln.sources.append(source)
-
-    # Relacionadas
-    for cve in vuln.related_cves:
-        related = db.query(models.Vulnerability).filter(models.Vulnerability.cve == cve).first()
-        if related:
-            stmt = models.related_vulnerabilities.insert().values(vuln_id=db_vuln.vuln_id, related_cve=cve)
-            db.execute(stmt)
-
-    db.commit()
-    return db_vuln
+async def load_json_data(file_path: str):
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    for item in data["vulnerabilities"]:
+        # Normalizar
+        vuln = {
+            "id": item["id"],
+            "vulnerability_name": item["vulnerability_name"],
+            "cve": item["cve"],
+            "cvss_v4": item["cvss_v4"],
+            "description": item["description"],
+            "group": item["group"],
+            "subgroup": item["subgroup"],
+            "pdf_sources": item["pdf_sources"],
+            "related_cves": item.get("related_vulnerabilities", [])
+        }
+        # Evitar duplicados
+        exists = await collection.find_one({"id": vuln["id"]})
+        if not exists:
+            await collection.insert_one(vuln)
+    print("¡Datos cargados en MongoDB!")

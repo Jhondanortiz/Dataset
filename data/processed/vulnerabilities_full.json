@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "generated_at": "2025-10-24",
+    "total_vulnerabilities": 128,
+    "source": "Análisis de reportes de ciberseguridad (ESET, HP, FinancialSector, etc.)"
+  },
+  "vulnerabilities": [
+    {
+      "id": 1,
+      "vulnerability_name": "Broadcom/Cypress WiFi Chips",
+      "cve": "CVE-2019-15126",
+      "cwe_id": "CWE-327",
+      "cvss_v4": 8.1,
+      "description": "Vulnerabilidad en chips WiFi Broadcom/Cypress que causa cifrado con clave cero después de desasociación.",
+      "group": "Grupo 4: Vulnerabilidades Criptográficas y de Protocolo",
+      "subgroup": "Subgrupo 4.3: Vulnerabilidades WiFi/Inalámbricas",
+      "pdf_sources": ["Q1-2020_Threat_Report", "ESET_Threat_Report_Q32020"]
+    },
+    {
+      "id": 2,
+      "vulnerability_name": "Microsoft Office",
+      "cve": "CVE-2020-16854",
+      "cvss_v4": 7.8,
+      "description": "Ejecución remota de código en Microsoft Office al abrir documentos maliciosos.",
+      "group": "Grupo 2: Vulnerabilidades de Ejecución Remota de Código (RCE)",
+      "subgroup": "Subgrupo 2.1: Aplicaciones de Oficina",
+      "pdf_sources": ["HP_Threat_Report_Q2_2020"]
+    }
+  ]
+}

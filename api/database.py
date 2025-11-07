@@ -1,17 +1,13 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+# api/database.py
+from motor.motor_asyncio import AsyncIOMotorClient
+from .config import settings
 
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:password@localhost:3306/vulnerabilities_db"
+client = AsyncIOMotorClient(settings.MONGODB_URL)
+database = client[settings.DATABASE_NAME]
+collection = database[settings.COLLECTION_NAME]
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-        
+# Para pruebas sincrónicas (opcional)
+from pymongo import MongoClient
+sync_client = MongoClient(settings.MONGODB_URL)
+sync_db = sync_client[settings.DATABASE_NAME]
+sync_collection = sync_db[settings.COLLECTION_NAME]

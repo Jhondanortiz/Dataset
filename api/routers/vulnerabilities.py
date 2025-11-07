@@ -1,21 +1,21 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+# api/routers/vulnerabilities.py
+from fastapi import APIRouter, HTTPException
 from typing import List
-from .. import crud, schemas, database
+from .. import crud, models
 
 router = APIRouter(prefix="/vulnerabilities", tags=["vulnerabilities"])
 
-@router.get("/", response_model=List[schemas.Vulnerability])
-def read_vulnerabilities(skip: int = 0, limit: int = 100, db: Session = Depends(database.get_db)):
-    return crud.get_vulnerabilities(db, skip, limit)
+@router.get("/", response_model=List[models.Vulnerability])
+async def read_vulnerabilities(skip: int = 0, limit: int = 100):
+    return await crud.get_vulnerabilities(skip, limit)
 
-@router.get("/{vuln_id}", response_model=schemas.Vulnerability)
-def read_vulnerability(vuln_id: int, db: Session = Depends(database.get_db)):
-    vuln = crud.get_vulnerability(db, vuln_id)
+@router.get("/{vuln_id}", response_model=models.Vulnerability)
+async def read_vulnerability(vuln_id: int):
+    vuln = await crud.get_vulnerability_by_id(vuln_id)
     if not vuln:
         raise HTTPException(404, "Vulnerabilidad no encontrada")
     return vuln
 
-@router.post("/", response_model=schemas.Vulnerability)
-def create_vulnerability(vuln: schemas.VulnerabilityCreate, db: Session = Depends(database.get_db)):
-    return crud.create_vulnerability(db, vuln)
+@router.post("/", response_model=models.Vulnerability)
+async def create_vulnerability(vuln: models.Vulnerability):
+    return await crud.create_vulnerability(vuln)
