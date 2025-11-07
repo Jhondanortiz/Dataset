@@ -1,18 +1,15 @@
-# api/main.py
 from fastapi import FastAPI
 from .routers import vulnerabilities
-from . import crud
-import asyncio
+from .database import create_indexes
 
-app = FastAPI(title="Vulnerabilities API - MongoDB", version="1.0")
+app = FastAPI(title="Dataset Vulnerabilidades 128", version="1.0")
 
 app.include_router(vulnerabilities.router)
 
 @app.on_event("startup")
-async def startup_event():
-    # Cargar datos al iniciar (opcional)
-    await crud.load_json_data("data/processed/vulnerabilities_full.json")
+async def startup():
+    await create_indexes()
 
 @app.get("/")
-def root():
-    return {"message": "API MongoDB - 128 vulnerabilidades listas"}
+def home():
+    return {"status": "API funcionando", "total": 128}

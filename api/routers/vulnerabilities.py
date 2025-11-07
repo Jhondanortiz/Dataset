@@ -1,21 +1,17 @@
-# api/routers/vulnerabilities.py
 from fastapi import APIRouter, HTTPException
 from typing import List
-from .. import crud, models
+from ..models import Vulnerability
+from ..crud import create_vulnerability, get_vulnerabilities, get_vulnerability
 
 router = APIRouter(prefix="/vulnerabilities", tags=["vulnerabilities"])
 
-@router.get("/", response_model=List[models.Vulnerability])
-async def read_vulnerabilities(skip: int = 0, limit: int = 100):
-    return await crud.get_vulnerabilities(skip, limit)
+@router.get("/", response_model=List[Vulnerability])
+async def read_all(skip: int = 0, limit: int = 100):
+    return await get_vulnerabilities(skip, limit)
 
-@router.get("/{vuln_id}", response_model=models.Vulnerability)
-async def read_vulnerability(vuln_id: int):
-    vuln = await crud.get_vulnerability_by_id(vuln_id)
+@router.get("/{id}", response_model=Vulnerability)
+async def read_one(id: int):
+    vuln = await get_vulnerability(id)
     if not vuln:
-        raise HTTPException(404, "Vulnerabilidad no encontrada")
+        raise HTTPException(404, "No encontrada")
     return vuln
-
-@router.post("/", response_model=models.Vulnerability)
-async def create_vulnerability(vuln: models.Vulnerability):
-    return await crud.create_vulnerability(vuln)
