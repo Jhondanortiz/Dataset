@@ -1,10 +1,11 @@
+{
   "metadata": {
     "generated_at": "2025-10-24",
     "total_vulnerabilities": 128,
     "source": "Análisis de reportes de ciberseguridad (ESET, HP, FinancialSector, etc.)"
   },
   "vulnerabilities": 
-    {
+     [{
       "id": 1,
       "pdf_sources": ["Q1-2020_Threat_Report", "ESET_Threat_Report_Q32020"],
       "vulnerability_name": "Broadcom/Cypress WiFi Chips",
