@@ -14,9 +14,12 @@ async def save_description(ref: str, text: str):
         f.truncate()
 
 async def load_description(ref: str) -> str:
-    with open(DESC_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
-        return data["descriptions"].get(ref, "Sin descripción")
+    try:
+        with open(DESC_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data["descriptions"].get(ref, "Sin descripción")
+    except FileNotFoundError:
+        return "Sin descripción"
 
 async def create_vulnerability(vuln: Vulnerability):
     ref = f"desc_{vuln.id}"
@@ -30,13 +33,24 @@ async def get_vulnerabilities(skip: int = 0, limit: int = 100):
     cursor = vulnerabilities.find().skip(skip).limit(limit).sort("id")
     result = []
     async for doc in cursor:
-        doc["description"] = await load_description(doc["description_ref"])
-        result.append(Vulnerability(**doc))
+        # Eliminar _id de MongoDB que causa problemas
+        doc.pop("_id", None)
+        
+        # Cargar descripción
+        description_ref = doc.get("description_ref", f"desc_{doc.get('id')}")
+        doc["description"] = await load_description(description_ref)
+        
+        # Agregar como diccionario directamente
+        result.append(doc)
+    
+    print(f"🔍 DEBUG crud.py: Se encontraron {len(result)} vulnerabilidades")
     return result
 
 async def get_vulnerability(id: int):
     doc = await vulnerabilities.find_one({"id": id})
     if doc:
-        doc["description"] = await load_description(doc["description_ref"])
-        return Vulnerability(**doc)
+        doc.pop("_id", None)
+        description_ref = doc.get("description_ref", f"desc_{id}")
+        doc["description"] = await load_description(description_ref)
+        return doc
     return None
