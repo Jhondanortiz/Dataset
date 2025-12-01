@@ -1,9 +1,10 @@
+{
   "metadata": {
     "generated_at": "2025-10-24",
     "total_vulnerabilities": 128,
     "source": "Análisis de reportes de ciberseguridad (ESET, HP, FinancialSector, etc.)"
   },
-  "groups": 
+  "groups": [
     {
       "id": 1,
       "description": "Vulnerabilidades Criptográficas y de Protocolo"

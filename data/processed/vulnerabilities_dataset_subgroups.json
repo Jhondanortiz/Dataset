@@ -1,9 +1,10 @@
+{
   "metadata": {
     "generated_at": "2025-10-24",
     "total_vulnerabilities": 128,
     "source": "Análisis de reportes de ciberseguridad (ESET, HP, FinancialSector, etc.)"
   },
-  "subgroups": 
+  "subgroups": [
     {
       "id": 3,
       "group": 4,
@@ -12,7 +13,7 @@
     {
       "id": 2,
       "group": 3,
-      "description": "3.4: Microsoft Office - Ejecución de Código vía Documentos",
+      "description": "3.4: Microsoft Office - Ejecución de Código vía Documentos"
     },
     {
       "id": 3,

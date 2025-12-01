@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VulnSearch Pro - Daniel 2025</title>
+  <title>VulnSearch Pro</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
     body { background: #f4f6f9; color: #333; line-height: 1.6; min-height: 100vh; }
@@ -156,7 +156,7 @@
 
   <header>
     <h1>Vuln<span>Search</span> Pro</h1>
-    <p class="subtitle">Sistema de Gestión de Vulnerabilidades • 128 registros reales • Daniel 2025</p>
+    <p class="subtitle">Sistema de Gestión de Vulnerabilidades • 128 registros reales</p>
   </header>
 
   <div class="container">
@@ -194,7 +194,7 @@
       document.getElementById("status").style.display = "none";
       document.getElementById("resultados").innerHTML = "";
 
-      let url = `${API_URL}/vulnerabilities?limit=200`;
+      let url = `${API_URL}/api/vulnerabilities?limit=200`;
       if (query) url += `&q=${encodeURIComponent(query)}`;
       if (min) url += `&min_cvss=${min}`;
       if (max) url += `&max_cvss=${max}`;

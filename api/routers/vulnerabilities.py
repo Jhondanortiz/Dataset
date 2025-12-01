@@ -1,18 +1,22 @@
+# api/routers/vulnerabilities.py
 from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional, Dict, Any
 from ..models import Vulnerability
-from ..crud import create_vulnerability, get_vulnerabilities, get_vulnerability
+from ..crud import get_vulnerabilities, get_vulnerability
 
-router = APIRouter(prefix="/vulnerabilities", tags=["vulnerabilities"])
+router = APIRouter()
 
-@router.get("/", response_model=List[Dict[str, Any]])  # Cambiar a Dict
+@router.get("/", response_model=List[Dict[str, Any]])
 async def read_all(
-    skip: int = 0, 
-    limit: int = 100,
+    skip: int = Query(0, ge=0, description="Número de registros a saltar"),
+    limit: int = Query(100, ge=1, le=1000, description="Límite de resultados"),
     q: Optional[str] = Query(None, description="Búsqueda por texto"),
-    min_cvss: Optional[float] = Query(None, description="CVSS mínimo"),
-    max_cvss: Optional[float] = Query(None, description="CVSS máximo")
+    min_cvss: Optional[float] = Query(None, ge=0, le=10, description="CVSS mínimo"),
+    max_cvss: Optional[float] = Query(None, ge=0, le=10, description="CVSS máximo")
 ):
+    """
+    Obtiene todas las vulnerabilidades con filtros opcionales
+    """
     vulns = await get_vulnerabilities(skip, limit)
     
     print(f"🔍 DEBUG router: Recibidas {len(vulns)} vulnerabilidades de crud.py")
@@ -39,7 +43,10 @@ async def read_all(
 
 @router.get("/{id}")
 async def read_one(id: int):
+    """
+    Obtiene una vulnerabilidad específica por ID
+    """
     vuln = await get_vulnerability(id)
     if not vuln:
-        raise HTTPException(404, "No encontrada")
+        raise HTTPException(status_code=404, detail="No encontrada")
     return vuln
