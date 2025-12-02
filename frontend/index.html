@@ -3,273 +3,332 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VulnSearch Pro</title>
+  <title>VulneraDB 2025 - 128 Vulnerabilidades Críticas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-    body { background: #f4f6f9; color: #333; line-height: 1.6; min-height: 100vh; }
+    :root {
+      --primary: #c31432;
+      --primary-dark: #a1122a;
+      --bg: #0f0f1a;
+      --card: #1a1a2e;
+      --text: #e0e0e0;
+      --text-light: #aaaaaa;
+      --border: #33334d;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
     header {
-      background: linear-gradient(135deg, #c31432, #240b36);
-      color: white;
+      background: linear-gradient(135deg, #1a0033, #c31432);
       text-align: center;
-      padding: 50px 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      padding: 60px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
-    h1 { font-size: 4rem; margin-bottom: 10px; }
-    h1 span { color: #ff6b6b; }
-    .subtitle { font-size: 1.5rem; opacity: 0.95; }
+    h1 { font-size: 4.5rem; margin-bottom: 10px; }
+    h1 span { color: #ff3366; }
+    .subtitle { font-size: 1.6rem; opacity: 0.9; }
 
-    .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+    .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
 
-    .search-box {
-      background: white;
-      padding: 35px;
-      border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    .filters {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .search-input {
-      width: 100%;
-      padding: 18px 22px;
-      font-size: 1.3rem;
-      border: 3px solid #ddd;
+    select, input {
+      padding: 16px 20px;
+      border: 2px solid var(--border);
       border-radius: 12px;
-      margin-bottom: 20px;
-      transition: border 0.3s;
+      background: #16213e;
+      color: white;
+      font-size: 1.1rem;
     }
-    .search-input:focus { outline: none; border-color: #c31432; box-shadow: 0 0 0 4px rgba(195,20,50,0.15); }
+    select:focus, input:focus { outline: none; border-color: var(--primary); }
 
-    .filters { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
-    .filters input { 
-      padding: 12px 15px; 
-      width: 140px; 
-      border: 2px solid #ddd; 
-      border-radius: 10px; 
-      font-size: 1rem;
-    }
     .btn {
-      padding: 14px 30px;
+      padding: 16px 32px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-weight: bold;
       font-size: 1.1rem;
       transition: all 0.3s;
     }
-    .btn-primary { background: #c31432; color: white; }
-    .btn-primary:hover { background: #a1122a; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(195,20,50,0.4); }
-    .btn-secondary { background: #555; color: white; }
-    .btn-secondary:hover { background: #333; }
-
-    #loading { 
-      text-align: center; 
-      padding: 80px 20px; 
-      font-size: 2rem; 
-      color: #c31432; 
-      display: none; 
-    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-4px); }
+    .btn-secondary { background: #333; color: white; }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
       gap: 30px;
     }
     .card {
-      background: white;
-      border-radius: 16px;
+      background: var(--card);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       transition: all 0.4s ease;
+      border: 1px solid var(--border);
     }
-    .card:hover { 
-      transform: translateY(-12px); 
-      box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(195,20,50,0.4);
     }
     .card-header {
-      padding: 22px;
-      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-      border-bottom: 1px solid #eee;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(195,20,50,0.2), transparent);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .card-title { font-size: 1.5rem; font-weight: bold; color: #2c3e50; }
+    .card-title { font-size: 1.6rem; font-weight: bold; }
     .cvss {
-      padding: 10px 18px;
-      border-radius: 30px;
-      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
       font-weight: bold;
-      font-size: 1.2rem;
-      min-width: 70px;
-      text-align: center;
+      font-size: 1.3rem;
     }
     .critical { background: #e74c3c; }
     .high { background: #e67e22; }
-    .medium { background: #f1c40f; color: #000 !important; }
+    .medium { background: #f39c12; color: black; }
     .low { background: #27ae60; }
 
-    .card-body { padding: 25px; }
-    .cve { 
-      font-size: 2rem; 
-      font-weight: bold; 
-      color: #c31432; 
-      margin: 12px 0; 
-      font-family: 'Courier New', monospace; 
-      word-break: break-all;
-    }
-    .description { 
-      margin: 18px 0; 
-      color: #444; 
-      font-size: 1.05rem; 
-      line-height: 1.7;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .tag { 
-      background: #eef2f6; 
-      color: #2c5282; 
-      padding: 8px 15px; 
-      border-radius: 30px; 
-      font-size: 0.95rem; 
-      font-weight: 500;
-    }
-
-    .footer-info {
-      text-align: center;
-      margin: 80px 0 40px;
-      font-size: 1.8rem;
+    .card-body { padding: 28px; }
+    .cve {
+      font-size: 2.2rem;
       font-weight: bold;
-      color: #c31432;
+      color: var(--primary);
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
     }
-
-    .status {
-      text-align: center;
-      padding: 15px;
-      background: #d4edda;
-      color: #155724;
-      border-radius: 10px;
+    .description {
       margin: 20px 0;
-      font-weight: bold;
-      display: none;
+      color: var(--text-light);
+      line-height: 1.8;
     }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .tag {
+      background: rgba(195,20,50,0.2);
+      color: #ff6b6b;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: 1px solid rgba(195,20,50,0.3);
+    }
+
+    .stats {
+      text-align: center;
+      margin: 50px 0;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    .status {
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+    .success { background: rgba(40,167,69,0.2); color: #28a745; border: 1px solid #28a745; }
+    .error { background: rgba(220,53,69,0.2); color: #dc3545; border: 1px solid #dc3545; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Vuln<span>Search</span> Pro</h1>
-    <p class="subtitle">Sistema de Gestión de Vulnerabilidades • 128 registros reales</p>
+    <h1>Vulnera<span>DB</span> 2025</h1>
+    <p class="subtitle">128 Vulnerabilidades de Alto Impacto • Filtros por Grupo y Subgrupo</p>
   </header>
 
   <div class="container">
 
-    <div class="search-box">
-      <input type="text" id="search" class="search-input" placeholder="Busca por CVE, nombre, descripción, CWE, grupo..." autocomplete="off">
-      
-      <div class="filters">
-        <input type="number" step="0.1" min="0" max="10" id="min_cvss" placeholder="CVSS mín.">
-        <input type="number" step="0.1" min="0" max="10" id="max_cvss" placeholder="CVSS máx.">
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Buscar por CVE, título, descripción...">
+
+      <select id="groupFilter">
+        <option value="">Todos los grupos</option>
+      </select>
+
+      <select id="subgroupFilter">
+        <option value="">Todos los subgrupos</option>
+      </select>
+
+      <input type="number" step="0.1" min="0" max="10" id="minCvss" placeholder="CVSS mínimo">
+      <input type="number" step="0.1" min="0" max="10" id="maxCvss" placeholder="CVSS máximo">
+
+      <div style="display:flex; gap:15px;">
         <button class="btn btn-primary" onclick="buscar()">BUSCAR</button>
-        <button class="btn btn-secondary" onclick="limpiar()">LIMPIAR</button>
+        <button class="btn btn-secondary" onclick="limpiarFiltros()">LIMPIAR</button>
       </div>
     </div>
 
-    <div id="status" class="status"></div>
-    <div id="loading">Cargando las 128 vulnerabilidades desde la API...</div>
+    <div id="status" class="status success" style="display:none;"></div>
 
     <div id="resultados" class="grid"></div>
 
-    <div class="footer-info">
-      <span id="total">0</span> vulnerabilidades encontradas
+    <div class="stats">
+      <span id="totalCount">0</span> vulnerabilidades encontradas
     </div>
   </div>
 
   <script>
-    const API_URL = "http://127.0.0.1:8000";
+    const API = "http://127.0.0.1:8000";
+    let allGroups = [];
+    let allSubgroups = [];
 
-    async function buscar() {
-      const query = document.getElementById("search").value.trim();
-      const min = document.getElementById("min_cvss").value;
-      const max = document.getElementById("max_cvss").value;
+    // Cargar grupos al iniciar
+    async function cargarGrupos() {
+      try {
+        const res = await fetch(`${API}/api/groups`);
+        const data = await res.json();
+        allGroups = data.groups;
+        const select = document.getElementById("groupFilter");
+        allGroups.forEach(g => {
+          const opt = document.createElement("option");
+          opt.value = g.id;
+          opt.textContent = g.name;
+          select.appendChild(opt);
+        });
+      } catch (e) { console.error("Error cargando grupos"); }
+    }
 
-      document.getElementById("loading").style.display = "block";
-      document.getElementById("status").style.display = "none";
-      document.getElementById("resultados").innerHTML = "";
+    // Cargar subgrupos cuando cambie el grupo
+    document.getElementById("groupFilter").addEventListener("change", async function() {
+      const groupId = this.value;
+      const subSelect = document.getElementById("subgroupFilter");
+      subSelect.innerHTML = '<option value="">Todos los subgrupos</option>';
+      subSelect.disabled = !groupId;
 
-      let url = `${API_URL}/api/vulnerabilities?limit=200`;
-      if (query) url += `&q=${encodeURIComponent(query)}`;
-      if (min) url += `&min_cvss=${min}`;
-      if (max) url += `&max_cvss=${max}`;
+      if (!groupId) return;
 
       try {
-        const response = await fetch(url);
-        
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const res = await fetch(`${API}/api/subgroups/${groupId}`);
+        const data = await res.json();
+        data.subgroups.forEach(s => {
+          const opt = document.createElement("option");
+          opt.value = s.id;
+          opt.textContent = s.name;
+          subSelect.appendChild(opt);
+        });
+      } catch (e) { console.error("Error cargando subgrupos"); }
+    });
 
-        const data = await response.json();
+    async function buscar() {
+      const q = document.getElementById("searchInput").value.trim();
+      const groupId = document.getElementById("groupFilter").value;
+      const subgroupId = document.getElementById("subgroupFilter").value;
+      const minCvss = document.getElementById("minCvss").value;
+      const maxCvss = document.getElementById("maxCvss").value;
+
+      let url = `${API}/api/vulnerabilities?limit=200`;
+      if (q) url += `&q=${encodeURIComponent(q)}`;
+      if (groupId) url += `&group_id=${groupId}`;
+      if (subgroupId) url += `&subgroup_id=${subgroupId}`;
+      if (minCvss) url += `&min_cvss=${minCvss}`;
+      if (maxCvss) url += `&max_cvss=${maxCvss}`;
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("API no responde");
+        const data = await res.json();
         const vulns = data.vulnerabilities || data;
 
-        mostrar(vulns);
+        mostrarVulnerabilidades(vulns);
         document.getElementById("status").style.display = "block";
-        document.getElementById("status").textContent = "Conexión exitosa con la API";
-        document.getElementById("status").style.background = "#d4edda";
-        document.getElementById("status").style.color = "#155724";
+        document.getElementById("status").textContent = "Conexión exitosa • " + vulns.length + " resultados";
+        document.getElementById("status").className = "status success";
 
       } catch (err) {
         document.getElementById("status").style.display = "block";
-        document.getElementById("status").textContent = "ERROR: No se puede conectar con la API. Ejecuta: uvicorn api.main:app --reload";
-        document.getElementById("status").style.background = "#f8d7da";
-        document.getElementById("status").style.color = "#721c24";
-      } finally {
-        document.getElementById("loading").style.display = "none";
+        document.getElementById("status").textContent = "ERROR: API no iniciada → Ejecuta: uvicorn api.main:app --reload";
+        document.getElementById("status").className = "status error";
       }
     }
 
-    function mostrar(vulns) {
+    function mostrarVulnerabilidades(vulns) {
       const cont = document.getElementById("resultados");
-      document.getElementById("total").textContent = vulns.length;
+      document.getElementById("totalCount").textContent = vulns.length;
 
       if (vulns.length === 0) {
-        cont.innerHTML = `<p style="grid-column:1/-1; text-align:center; font-size:2.2rem; color:#aaa; margin:80px 0;">
-                          No se encontraron vulnerabilidades con esos filtros
-                         </p>`;
+        cont.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:100px; font-size:2.5rem; color:#555;">
+                          No se encontraron vulnerabilidades
+                         </div>`;
         return;
       }
 
+      cont.innerHTML = "";
       vulns.forEach(v => {
-        const cvssNum = v.cvss_v4 ? parseFloat(v.cvss_v4) : 0;
-        const cvss = cvssNum > 0 ? cvssNum.toFixed(1) : "N/D";
+        const cvss = v.cvss_v4 ? parseFloat(v.cvss_v4).toFixed(1) : "N/D";
         let clase = "low";
-        if (cvssNum >= 9.0) clase = "critical";
-        else if (cvssNum >= 7.0) clase = "high";
-        else if (cvssNum >= 4.0) clase = "medium";
+        if (v.cvss_v4 >= 9.0) clase = "critical";
+        else if (v.cvss_v4 >= 7.0) clase = "high";
+        else if (v.cvss_v4 >= 4.0) clase = "medium";
 
-        cont.innerHTML += `
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">${v.vulnerability_name || "Vulnerabilidad sin nombre"}</div>
-              <div class="cvss ${clase}">${cvss}</div>
+        const grupo = allGroups.find(g => g.id === v.group_id)?.name || "Otro";
+        const subgrupo = allSubgroups.find(s => s.id === v.subgroup_id)?.name || "Otro";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-title">${v.vulnerability_name || "Sin nombre"}</div>
+            <div class="cvss ${clase}">${cvss}</div>
+          </div>
+          <div class="card-body">
+            <div class="cve">${v.cve || "— Sin CVE —"}</div>
+            <div class="description">${(v.description || "").substring(0, 180)}...</div>
+            <div class="tags">
+              <span class="tag"><i class="fas fa-shield-alt"></i> ${grupo}</span>
+              <span class="tag"><i class="fas fa-layer-group"></i> ${subgrupo}</span>
+              <span class="tag"><i class="fas fa-bug"></i> ${v.cwe_name || "CWE desconocido"}</span>
             </div>
-            <div class="card-body">
-              <div class="cve">${v.cve || "— Sin CVE —"}</div>
-              <div class="description">${(v.description || "Sin descripción disponible").substring(0, 200)}...</div>
-              <div class="tags">
-                <span class="tag">${v.cwe_name || "CWE desconocido"}</span>
-                <span class="tag">Grupo ${v.group || "?"}</span>
-                <span class="tag">ID ${v.id}</span>
-              </div>
-            </div>
-          </div>`;
+          </div>
+        `;
+        card.onclick = () => {
+          const id = v.id || v._id;
+          if (id) {
+            window.location.href = `detalle.html?id=${id}`;
+          } else {
+            console.error("Vulnerabilidad sin ID:", v);
+          }
+        };
+        cont.appendChild(card);
       });
     }
 
-    function limpiar() {
-      document.getElementById("search").value = "";
-      document.getElementById("min_cvss").value = "";
-      document.getElementById("max_cvss").value = "";
+    function limpiarFiltros() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("groupFilter").value = "";
+      document.getElementById("subgroupFilter").value = "";
+      document.getElementById("subgroupFilter").disabled = true;
+      document.getElementById("minCvss").value = "";
+      document.getElementById("maxCvss").value = "";
       buscar();
     }
 
-    // Carga automática al abrir la página
-    window.addEventListener("load", buscar);
+    // Cargar todo al iniciar
+    window.onload = () => {
+      cargarGrupos();
+      buscar();
+    };
   </script>
 </body>
 </html>

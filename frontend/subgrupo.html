@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subgrupo - VulneraDB 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+  <style>
+    :root { --primary:#c31432; --bg:#0f0f1a; --card:#1a1a2e; --text:#e0e0e0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
+
+    header { background: linear-gradient(135deg,#1a0033,var(--primary)); padding:40px; text-align:center; }
+    header h1 a { color:white; text-decoration:none; }
+    header h1 { font-size:2.8rem; }
+
+    .container { max-width:1200px; margin:40px auto; padding:20px; }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(350px,1fr));
+      gap:30px;
+    }
+
+    .card {
+      background:var(--card);
+      padding:25px;
+      border-radius:18px;
+      cursor:pointer;
+      border:1px solid #33334d;
+      transition:0.3s;
+      box-shadow:0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .card:hover { transform:translateY(-10px); }
+
+    .cve { font-size:1.8rem; color:var(--primary); }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      <a href="index.html">VulneraDB</a> /
+      <span id="groupName">Cargando...</span> /
+      <span id="subgroupName">Cargando...</span>
+    </h1>
+  </header>
+
+  <div class="container">
+    <div id="vulnerabilitiesList" class="grid"></div>
+  </div>
+
+  <script>
+    const API = "http://127.0.0.1:8000";
+    const urlParams = new URLSearchParams(window.location.search);
+    const subgroupId = Number(urlParams.get("id"));
+
+    if (!subgroupId) {
+      document.getElementById("subgroupName").textContent = "ID inválido";
+    } else {
+      cargarSubgrupo(subgroupId);
+    }
+
+    async function cargarSubgrupo(id) {
+      try {
+        // ============================
+        // 1. Cargar todos los subgrupos
+        // ============================
+        const subRes = await fetch(`${API}/api/subgroups`);
+        if (!subRes.ok) throw new Error("Error cargando subgrupos");
+
+        const subData = await subRes.json();
+        const sub = subData.subgroups.find(s => s.id === id);
+
+        if (!sub) {
+          document.getElementById("subgroupName").textContent = "Subgrupo no encontrado";
+          return;
+        }
+
+        // Setear nombre real del subgrupo desde MongoDB
+        document.getElementById("subgroupName").textContent = sub.name;
+
+        // ============================
+        // 2. Buscar el grupo padre
+        // ============================
+        const groupRes = await fetch(`${API}/api/groups`);
+        const groupData = await groupRes.json();
+
+        const grupo = groupData.groups.find(g => g.id === sub.group_id);
+        document.getElementById("groupName").textContent = grupo ? grupo.name : "Grupo desconocido";
+
+        // ============================
+        // 3. Cargar vulnerabilidades del subgrupo
+        // ============================
+        const vulnsRes = await fetch(`${API}/api/vulnerabilities?subgroup_id=${id}&limit=500`);
+        const list = document.getElementById("vulnerabilitiesList");
+
+        if (!vulnsRes.ok) {
+          list.innerHTML = "<p>No fue posible cargar las vulnerabilidades.</p>";
+          return;
+        }
+
+        const vulns = (await vulnsRes.json()).vulnerabilities || [];
+        list.innerHTML = "";
+
+        if (vulns.length === 0) {
+          list.innerHTML = "<p>No hay vulnerabilidades en este subgrupo.</p>";
+          return;
+        }
+
+        // ============================
+        // 4. Renderizar tarjetas
+        // ============================
+        vulns.forEach(v => {
+          list.innerHTML += `
+            <div class="card" onclick="location.href='detalle.html?id=${v._id}'">
+              <div class="cve">${v.cve || "SIN CVE"}</div>
+              <p><strong>${v.vulnerability_name}</strong></p>
+              <p>CVSS: ${v.cvss_v4 ?? "N/D"}</p>
+            </div>
+          `;
+        });
+
+      } catch (err) {
+        console.error("Error cargando subgrupo:", err);
+        document.getElementById("subgroupName").textContent = "Error al cargar";
+      }
+    }
+  </script>
+
+</body>
+</html>

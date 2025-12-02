@@ -1,521 +1,130 @@
-{
-  "metadata": {
-    "generated_at": "2025-10-24",
-    "total_vulnerabilities": 128,
-    "source": "Análisis de reportes de ciberseguridad (ESET, HP, FinancialSector, etc.)"
-  },
-  "groups": [
-    {
-      "id": 1,
-      "description": "Vulnerabilidades Criptográficas y de Protocolo"
-    },
-    {
-      "id": 2,
-      "description": "Vulnerabilidades de Microsoft Windows"
-    },
-    {
-      "id": 3,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 4,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 5,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 6,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 7,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 8,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 9,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 10,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 11,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 12,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 13,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 14,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 15,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 16,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 17,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 18,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 19,
-      "description": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)"
-    },
-    {
-      "id": 20,
-      "description": "Vulnerabilidades de Microsoft Windows"
-    },
-    {
-      "id": 21,
-      "description": "Vulnerabilidades de Microsoft Windows"
-    },
-    {
-      "id": 22,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 23,
-      "description": "Vulnerabilidades De Drivers y Hardware"
-    },
-    {
-      "id": 24,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 25,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 26,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 27,
-      "description": "Vulnerabilidades Antiguas/Legacy"
-    },
-    {
-      "id": 28,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 29,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 30,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 31,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 32,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 33,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 34,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 35,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 36,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 37,
-      "description": "Vulnerabilidades de Microsoft Windows"
-    },
-    {
-      "id": 38,
-      "description": "Vulnerabilidades de Microsoft Windows"
-    },
-    {
-      "id": 39,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 40,
-      "description": "Vulnerabilidades de Appliances y Dispositivos de Red"
-    },
-    {
-      "id": 41,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 42,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 43,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 44,
-      "description": "Vulnerabilidades de Aplicaciones Web y CMS"
-    },
-    {
-      "id": 45,
-      "description": "Vulnerabilidades De Drivers y Hardware"
-    },
-    {
-      "id": 46,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 47,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 48,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 49,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 50,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 51,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 52,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 53,
-      "description": "Vulnerabilidades de Bases de Datos y Middleware"
-    },
-    {
-      "id": 54,
-      "description": "Vulnerabilidades Antiguas/Legacy"
-    },
-    {
-      "id": 55,
-      "description": "Vulnerabilidades Antiguas/Legacy"
-    },
-    {
-      "id": 56,
-      "description": "Vulnerabilidades Antiguas/Legacy"
-    },
-    {
-      "id": 57,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 58,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 59,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 60,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 61,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 62,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 63,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 64,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 65,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 66,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 67,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 68,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 69,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 70,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 71,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 72,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 73,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 74,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 75,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 76,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 77,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 78,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 79,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 80,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 81,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 82,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 83,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 84,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 85,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 86,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 87,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 88,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 89,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 90,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 91,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 92,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 93,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 94,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 95,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 96,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 97,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 98,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 99,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 100,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 101,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 102,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 103,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 104,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 105,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 106,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 107,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 108,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 109,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 110,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 111,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 112,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 113,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 114,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 115,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 116,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 117,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 118,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 119,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 120,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 121,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 122,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 123,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 124,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 125,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 126,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 127,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    },
-    {
-      "id": 128,
-      "description": "Vulnerabilidades de Ejecución Remota de Código (RCE)"
-    }
-  ]
-}
+[
+  { "id": 1, "name": "Vulnerabilidades Criptográficas y de Protocolo" },
+  { "id": 2, "name": "Vulnerabilidades de Microsoft Windows" },
+  { "id": 3, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 4, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 5, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 6, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 7, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 8, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 9, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 10, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 11, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 12, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 13, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 14, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 15, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 16, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 17, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 18, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 19, "name": "Vulnerabilidades de 2024-2025 (Sin Información Pública o Inválidas)" },
+  { "id": 20, "name": "Vulnerabilidades de Microsoft Windows" },
+  { "id": 21, "name": "Vulnerabilidades de Microsoft Windows" },
+  { "id": 22, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 23, "name": "Vulnerabilidades De Drivers y Hardware" },
+  { "id": 24, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 25, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 26, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 27, "name": "Vulnerabilidades Antiguas/Legacy" },
+  { "id": 28, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 29, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 30, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 31, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 32, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 33, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 34, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 35, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 36, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 37, "name": "Vulnerabilidades de Microsoft Windows" },
+  { "id": 38, "name": "Vulnerabilidades de Microsoft Windows" },
+  { "id": 39, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 40, "name": "Vulnerabilidades de Appliances y Dispositivos de Red" },
+  { "id": 41, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 42, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 43, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 44, "name": "Vulnerabilidades de Aplicaciones Web y CMS" },
+  { "id": 45, "name": "Vulnerabilidades De Drivers y Hardware" },
+  { "id": 46, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 47, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 48, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 49, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 50, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 51, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 52, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 53, "name": "Vulnerabilidades de Bases de Datos y Middleware" },
+  { "id": 54, "name": "Vulnerabilidades Antiguas/Legacy" },
+  { "id": 55, "name": "Vulnerabilidades Antiguas/Legacy" },
+  { "id": 56, "name": "Vulnerabilidades Antiguas/Legacy" },
+  { "id": 57, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 58, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 59, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 60, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 61, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 62, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 63, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 64, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 65, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 66, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 67, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 68, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 69, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 70, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 71, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 72, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 73, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 74, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 75, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 76, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 77, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 78, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 79, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 80, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 81, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 82, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 83, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 84, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 85, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 86, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 87, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 88, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 89, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 90, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 91, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 92, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 93, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 94, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 95, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 96, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 97, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 98, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 99, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 100, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 101, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 102, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 103, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 104, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 105, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 106, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 107, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 108, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 109, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 110, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 111, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 112, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 113, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 114, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 115, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 116, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 117, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 118, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 119, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 120, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 121, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 122, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 123, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 124, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 125, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 126, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 127, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" },
+  { "id": 128, "name": "Vulnerabilidades de Ejecución Remota de Código (RCE)" }
+]

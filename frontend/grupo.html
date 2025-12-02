@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grupo - VulneraDB 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+  <style>
+    :root { --primary: #c31432; --bg: #0f0f1a; --card: #1a1a2e; --text: #e0e0e0; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+    header { background: linear-gradient(135deg, #1a0033, var(--primary)); padding: 50px 20px; text-align: center; }
+    h1 { font-size: 3.5rem; }
+    .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+
+    .subgroups-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+      gap: 20px; 
+      margin-bottom: 50px; 
+    }
+    .subgroup-card { 
+      background: var(--card); 
+      padding: 25px; 
+      border-radius: 16px; 
+      text-align: center; 
+      cursor: pointer; 
+      transition: 0.3s; 
+      border: 1px solid #33334d; 
+    }
+    .subgroup-card:hover { background: rgba(195,20,50,0.2); transform: translateY(-8px); }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); 
+      gap: 30px; 
+    }
+    .card { 
+      background: var(--card); 
+      border-radius: 20px; 
+      padding: 25px; 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
+      cursor: pointer; 
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-10px); }
+
+    .cve { font-size: 2rem; color: var(--primary); }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      <a href="index.html" style="color:white;text-decoration:none;">VulneraDB</a> →
+      <span id="groupName">Grupo</span>
+    </h1>
+  </header>
+
+  <div class="container">
+
+    <h2 style="text-align:center; margin:40px 0; font-size:2.5rem; color:#ff6b6b;">Subgrupos</h2>
+    <div class="subgroups-grid" id="subgroupsGrid"></div>
+
+    <h2 style="text-align:center; margin:60px 0 40px; font-size:2.5rem; color:#ff6b6b;">Vulnerabilidades en este grupo</h2>
+    <div class="grid" id="vulnerabilitiesList"></div>
+
+  </div>
+
+  <script>
+    const API = "http://127.0.0.1:8000";
+    const urlParams = new URLSearchParams(window.location.search);
+    const groupId = Number(urlParams.get('id'));
+
+    if (!groupId) {
+      document.body.innerHTML = "<h1 style='text-align:center;color:#fff;margin:100px;'>Grupo no válido</h1>";
+    } else {
+      cargarGrupo();
+    }
+
+    async function cargarGrupo() {
+      try {
+        // ===================== Obtener TODOS los grupos =====================
+        const grupoRes = await fetch(`${API}/api/groups`);
+        if (!grupoRes.ok) throw new Error("No se pudo obtener la lista de grupos");
+
+        const gruposData = await grupoRes.json();
+        const grupo = gruposData.groups.find(g => g.id === groupId);
+
+        if (!grupo) {
+          document.getElementById("groupName").textContent = "Grupo no encontrado";
+        } else {
+          document.getElementById("groupName").textContent = grupo.name;
+        }
+
+        // ===================== Obtener SUBGRUPOS de este grupo =====================
+        const subRes = await fetch(`${API}/api/subgroups/bygroup/${groupId}`);
+        const subgroupsGrid = document.getElementById("subgroupsGrid");
+        subgroupsGrid.innerHTML = "";
+
+        if (subRes.ok) {
+          const subs = (await subRes.json()).subgroups;
+
+          subs.forEach(s => {
+            subgroupsGrid.innerHTML += `
+              <div class="subgroup-card" onclick="location.href='subgrupo.html?id=${s.id}'">
+                <h3>${s.name}</h3>
+                <p>Haz clic para ver vulnerabilidades</p>
+              </div>`;
+          });
+
+        } else {
+          subgroupsGrid.innerHTML = "<p>No hay subgrupos disponibles.</p>";
+        }
+
+        // ===================== Obtener vulnerabilidades del grupo =====================
+        const vulnsRes = await fetch(`${API}/api/vulnerabilities?group_id=${groupId}&limit=500`);
+        const vulnerabilitiesList = document.getElementById("vulnerabilitiesList");
+        vulnerabilitiesList.innerHTML = "";
+
+        if (vulnsRes.ok) {
+          const vulnsData = await vulnsRes.json();
+          const vulns = vulnsData.vulnerabilities || [];
+
+          if (vulns.length === 0) {
+            vulnerabilitiesList.innerHTML = "<p>No hay vulnerabilidades en este grupo.</p>";
+            return;
+          }
+
+          vulns.forEach(v => {
+            vulnerabilitiesList.innerHTML += `
+              <div class="card" onclick="location.href='detalle.html?id=${v._id}'">
+                <div class="cve">${v.cve || "SIN CVE"}</div>
+                <p><strong>${v.vulnerability_name}</strong></p>
+                <p>CVSS: ${v.cvss_v4 ?? 'N/D'}</p>
+              </div>`;
+          });
+
+        } else {
+          vulnerabilitiesList.innerHTML = "<p>No hay vulnerabilidades en este grupo.</p>";
+        }
+
+      } catch (error) {
+        document.body.innerHTML = `
+          <h1 style="text-align:center; margin-top:100px; color:#ff6b6b;">
+            Error cargando el grupo
+          </h1>
+          <p style="text-align:center; color:white;">${error.message}</p>
+        `;
+      }
+    }
+
+  </script>
+
+</body>
+</html>
